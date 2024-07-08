@@ -55,3 +55,41 @@
 ## 8. requirements.txt
 لیست کتابخانه‌های مورد نیاز پروژه را مشخص می‌کند.
 - وابستگی‌ها: شامل کتابخانه‌هایی مثل fastapi, uvicorn, SQLAlchemy, Pydantic و غیره.
+
+
+
+### با نگاهی دقیق تر به ماژول ها می توانیم جزعیات کد ها را برسی کنیم :
+
+## 1. main.py
+
+![image](https://github.com/Mahditrd/final/assets/158854456/febe12c0-3243-4292-836a-545a4c70bfc8)
+
+#### ساخت ابجکت از fastapi و فراخوانی روتر ها کار اصلی این ماژول است 
+
+
+## 2. database.py
+
+```python
+SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+
+# ایجاد یک موتور برای اتصال به پایگاه داده SQLite
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# ایجاد یک SessionLocal برای ایجاد نسخه‌های جلسه برای اتصال به پایگاه داده
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# تابع get_db که یک جلسه از پایگاه داده ایجاد می‌کند و آن را به عنوان وابستگی برای دیگر توابع و روت‌ها در وب سرویس فراهم می‌کند
+```
+
+
+
+## 3.  models.py
+
+
