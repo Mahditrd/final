@@ -29,10 +29,10 @@ def read_course(course_id: int, db: Session = Depends(get_db)):
 
 @course_router.put("/course/{courseid}", response_model=schemas.Course)
 def update_course(courseid: str, course: schemas.Course, db: Session = Depends(get_db)):
-    schemas.validate_course(course)
     db_course = crud.update_course(db, courseid, course)
     if db_course is None:
         raise HTTPException(status_code=404, detail="درسی با این کد درسامانه یافت نشد")
+    schemas.validate_course(course)
     return db_course
 
 

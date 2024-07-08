@@ -191,7 +191,7 @@ def validate_professor(professor):
         raise HTTPException(detail=error , status_code=400)
 
 #course
-
+#new 
 class Course(BaseModel):
     cid: str = ""
     cname: str = ""
